@@ -14,18 +14,19 @@ import java.util.List;
  *
  * @author lizhayes-golding
  */
-public class FakeEarthquakeDataFactory extends EarthquakeDataFactory{
+public class FakeEarthquakeDataFactory extends EarthquakeDataFactory {
 
-  @Override
-  public List<EarthquakeData> getData() {
-    ArrayList<EarthquakeData> list = new ArrayList<>(4);
+    @Override
+    public List<EarthquakeData> getData() {
+        ArrayList<EarthquakeData> list = new ArrayList<>();
+        list.add(new EarthquakeData("Atlanta, GA", 2.3, new Date(), 33.7490, 
+                84.3880, 30, "http://www.sample.com"));
+        Date now = new Date();
+        list.add(new EarthquakeData("Deerfield, MA", 1.5, new Date(now.getTime() - 24l*60*60*1000),
+                42.5446, 72.6056, 79.3, "http://www.example.com"));
+        list.add(new EarthquakeData("Cincinnati, OH", 2.9, new Date(now.getTime() - 3l*24*60*60*1000),
+               39.1031, 84.5120, 100, "http://www.ditto.com"));
+        return list;
+    }  
     
-    EarthquakeData data = new EarthquakeData("Albany, NY", new Date(), 4.3);
-    list.add(data);
-    Date now = new Date();
-    list.add(new EarthquakeData("Lebanon, NH", new Date(now.getTime() - 24l*60*60*1000), 5.0));
-    list.add(new EarthquakeData("Hartford, CT", new Date(now.getTime() - 3l*24*60*60*1000), 3.0));
-    return list; 
-  }
-  
 }

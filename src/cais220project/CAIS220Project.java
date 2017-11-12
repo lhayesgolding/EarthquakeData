@@ -8,38 +8,44 @@ package cais220project;
 
 import java.util.List;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
  *
- * @author Ruth Kurniawati (rkurniawati@westfield.ma.edu)
+ * @author lizhayes-golding
  */
 public class CAIS220Project extends Application {
-  
-  @Override
-  public void start(Stage primaryStage) {
-    
-    EarthquakeDataFactory factory = new FakeEarthquakeDataFactory();
-    List<EarthquakeData> data = factory.getData();
-    EarthquakeTableView tableView = new EarthquakeTableView(FXCollections.observableArrayList(data));
-    
-    Scene scene = new Scene(tableView, 300, 250);
-    primaryStage.setTitle("Earthquake Table");
-    primaryStage.setScene(scene);
-    primaryStage.show();
-  }
+   
+    @Override
+    public void start(Stage primaryStage) {
+        HBox topRow = new HBox();
+        DataSelectorPane dataSelectorPane = new DataSelectorPane();
+        TimeSelectorPane timeSelectorPane = new TimeSelectorPane();
+        topRow.getChildren().addAll(dataSelectorPane, timeSelectorPane);
+        
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topRow);
+        
+        EarthquakeDataFactory factory = new FakeEarthquakeDataFactory();
+        List<EarthquakeData> data = factory.getData();
+        EarthquakeTableView tableView = new EarthquakeTableView(FXCollections.observableArrayList(data));
+        
+        borderPane.setBottom(tableView);
+        
+        Scene scene = new Scene(borderPane);
+        primaryStage.setTitle("Earthquake Data");
+        primaryStage.setScene(scene);
+        primaryStage.show(); 
+    }
 
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String[] args) {
-    launch(args);
-  }
-  
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+   
 }
