@@ -43,6 +43,15 @@ public class EarthquakeData {
         this.depth =  new SimpleDoubleProperty(depth);
         this.url = new SimpleStringProperty(url);
     }
+    
+    /**
+     public EarthquakeData(String location, Date quakeTime, double magnitude, String url) {
+        this.location = new SimpleStringProperty(location);
+        this.magnitude = new SimpleDoubleProperty(magnitude);
+        this.quakeTime = new SimpleObjectProperty(quakeTime);
+        this.url = new SimpleStringProperty(url);
+    }
+     */
 
     
     public StringProperty locationProperty() {

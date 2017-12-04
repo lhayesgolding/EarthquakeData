@@ -42,7 +42,7 @@ public class TimeSelectorPane extends Pane {
         vbox.getChildren().addAll(rbHour, rbDay, rb7Days, rb30Days);
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(5);
-        vbox.setPrefSize(400, 200);
+        vbox.setPrefSize(400, 250);
         
         borderPane.setStyle("-fx-background-color: gainsboro; -fx-border-color: gray");
         borderPane.setTop(title);
