@@ -6,6 +6,7 @@
  */
 package cais220project;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,5 +29,11 @@ public class FakeEarthquakeDataFactory extends EarthquakeDataFactory {
                39.1031, 84.5120, 100, "http://www.ditto.com"));
         return list;
     }  
+
+    @Override
+    public List<EarthquakeData> getData(URL urlFile) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }

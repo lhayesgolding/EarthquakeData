@@ -8,6 +8,7 @@
 package cais220project;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,6 +93,11 @@ public class CSVEarthquakeDataFactory extends EarthquakeDataFactory {
     
     public static void main(String[] args) {
         
+    }
+
+    @Override
+    public List<EarthquakeData> getData(URL urlFile) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

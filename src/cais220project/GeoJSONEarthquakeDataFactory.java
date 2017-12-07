@@ -33,17 +33,18 @@ public class GeoJSONEarthquakeDataFactory
     static private final String LOCATION_KEY = "place";
     static private final String MAGNITUDE_KEY = "mag";
     static private final String QUAKETIME_KEY = "time";
-    
     static private final String URL_KEY = "url";
 
     @Override
-    public List<EarthquakeData> getData() {
-        URL urlFile = null;
+    public List<EarthquakeData> getData(URL urlFile) {
+        /**URL urlFile = null;
         try {
+            
             urlFile = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson");
         } catch (MalformedURLException ex) {
             Logger.getLogger(GeoJSONEarthquakeDataFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
             
         ArrayList<EarthquakeData> list = null;
         try (InputStream in = urlFile.openStream();) {
@@ -61,7 +62,7 @@ public class GeoJSONEarthquakeDataFactory
                     System.err.println("Invalid data " + f.toString());
                     continue;
                 }
-                Point point = (Point) f.getGeometry();
+                Point point = (Point)f.getGeometry();
                 LngLatAlt lla = point.getCoordinates(); 
                 double latitude = lla.getLatitude();
                 double longitude = lla.getLongitude();
@@ -80,6 +81,7 @@ public class GeoJSONEarthquakeDataFactory
         return list;
     }
 
+    /**
     public static void main(String[] args) {
         EarthquakeDataFactory factory
                 = new GeoJSONEarthquakeDataFactory();
@@ -87,5 +89,11 @@ public class GeoJSONEarthquakeDataFactory
         list.forEach((earthquakeData) -> {
             System.out.println(earthquakeData.toString());
         });
+    }
+    */
+    
+    @Override
+    public List<EarthquakeData> getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

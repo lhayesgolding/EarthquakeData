@@ -6,6 +6,7 @@
  */
 package cais220project;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -13,7 +14,9 @@ import java.util.List;
  * @author lizhayes-golding
  */
 public abstract class EarthquakeDataFactory {
-  
-  public abstract List<EarthquakeData> getData();
-  
+
+    public abstract List<EarthquakeData> getData();
+
+    public abstract List<EarthquakeData> getData(URL urlFile);
+
 }

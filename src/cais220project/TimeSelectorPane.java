@@ -24,14 +24,15 @@ public class TimeSelectorPane extends Pane {
 
     VBox vbox = new VBox();
     BorderPane borderPane = new BorderPane();
-
+    RadioButton rbHour = new RadioButton("Past Hour");
+    RadioButton rbDay = new RadioButton("Past Day");
+    RadioButton rb7Days = new RadioButton("Past 7 Days");
+    RadioButton rb30Days = new RadioButton("Past 30 Days");
+    
     public TimeSelectorPane() {
         Label title = new Label("Show earthquakes in:");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        RadioButton rbHour = new RadioButton("Past Hour");
-        RadioButton rbDay = new RadioButton("Past Day");
-        RadioButton rb7Days = new RadioButton("Past 7 Days");
-        RadioButton rb30Days = new RadioButton("Past 30 Days");
+        rbHour.setSelected(true);
 
         ToggleGroup group = new ToggleGroup();
         rbHour.setToggleGroup(group);
@@ -51,4 +52,20 @@ public class TimeSelectorPane extends Pane {
         getChildren().add(borderPane);
     }
 
+    public boolean hourSelected() {
+        return rbHour.isSelected();
+    }
+    
+    public boolean daySelected() {
+        return rbDay.isSelected();
+    }
+    
+    public boolean weekSelected() {
+        return rb7Days.isSelected();
+    }
+    
+    public boolean monthSelected() {
+        return rb30Days.isSelected();
+    }
+    
 }
