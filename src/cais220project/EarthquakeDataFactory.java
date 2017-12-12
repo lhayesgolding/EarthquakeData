@@ -17,6 +17,6 @@ public abstract class EarthquakeDataFactory {
 
     public abstract List<EarthquakeData> getData();
 
-    public abstract List<EarthquakeData> getData(URL urlFile);
+    public abstract List<EarthquakeData> getData(String urlString);
 
 }

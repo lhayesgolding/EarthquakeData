@@ -18,7 +18,7 @@ import java.util.Scanner;
  *
  * @author lizhayes-golding
  */
-
+/**
 public class CSVEarthquakeDataFactory extends EarthquakeDataFactory {
 
     @Override
@@ -101,3 +101,4 @@ public class CSVEarthquakeDataFactory extends EarthquakeDataFactory {
     }
     
 }
+*/

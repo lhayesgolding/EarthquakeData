@@ -6,11 +6,8 @@
  */
 package cais220project;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
@@ -25,9 +22,10 @@ import javafx.stage.Stage;
  * @author lizhayes-golding
  */
 public class CAIS220Project extends Application {
+
     List<EarthquakeData> data;
     EarthquakeTableView tableView;
-    
+
     @Override
     public void start(Stage primaryStage) {
         HBox topRow = new HBox();
@@ -36,80 +34,75 @@ public class CAIS220Project extends Application {
         topRow.getChildren().addAll(dataSelectorPane, timeSelectorPane);
         Button btSubmit = new Button("Submit");
         URL url = null;
-        
+
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(topRow);
         borderPane.setLeft(btSubmit);
-        
-       
+
         EarthquakeDataFactory factory = new GeoJSONEarthquakeDataFactory();
-        try {
-            url = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson");
-            
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(CAIS220Project.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        data = factory.getData(url);
+
+        String urlString = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson";
+        data = factory.getData(urlString);
         tableView = new EarthquakeTableView(FXCollections.observableArrayList(data));
-        
+
         borderPane.setBottom(tableView);
-        
+
         tableView.getColumns().addAll(tableView.getLocationColumn(), tableView.getMagnitudeColumn(),
                 tableView.getDateAndTimeColumn(), tableView.getLatitudeColumn(),
                 tableView.getLongitudeColumn(), tableView.getDepthColumn(),
                 tableView.getUrlColumn());
-        
+
         btSubmit.setOnMouseClicked(e -> {
-            URL urlHour = null, urlDay = null, urlWeek = null, urlMonth = null;
-            try {
-                urlHour = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson");
-                urlDay = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson");
-                urlWeek = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson");
-                urlMonth = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson");
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(CAIS220Project.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (timeSelectorPane.daySelected())  
+            String urlHour = null, urlDay = null, urlWeek = null, urlMonth = null;
+
+            urlHour = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson";
+            urlDay = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+            urlWeek = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+            urlMonth = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+
+            if (timeSelectorPane.daySelected()) {
                 data = factory.getData(urlDay);
-            else if (timeSelectorPane.weekSelected())
+            } else if (timeSelectorPane.weekSelected()) {
                 data = factory.getData(urlWeek);
-            else if (timeSelectorPane.monthSelected())
+            } else if (timeSelectorPane.monthSelected()) {
                 data = factory.getData(urlMonth);
-            else
+            } else {
                 data = factory.getData(urlHour);
+            }
             tableView.setItems(FXCollections.observableArrayList(data));
-    
+
             tableView.getColumns().clear();
-            if (dataSelectorPane.locationSelected())
+            if (dataSelectorPane.locationSelected()) {
                 tableView.getColumns().add(tableView.getLocationColumn());
-            if (dataSelectorPane.magnitudeSelected())
+            }
+            if (dataSelectorPane.magnitudeSelected()) {
                 tableView.getColumns().add(tableView.getMagnitudeColumn());
-            if (dataSelectorPane.dateAndTimeSelected())
+            }
+            if (dataSelectorPane.dateAndTimeSelected()) {
                 tableView.getColumns().add(tableView.getDateAndTimeColumn());
-            if (dataSelectorPane.latitudeSelected())
+            }
+            if (dataSelectorPane.latitudeSelected()) {
                 tableView.getColumns().add(tableView.getLatitudeColumn());
-            if (dataSelectorPane.longitudeSelected())
+            }
+            if (dataSelectorPane.longitudeSelected()) {
                 tableView.getColumns().add(tableView.getLongitudeColumn());
-            if (dataSelectorPane.depthSelected()) 
+            }
+            if (dataSelectorPane.depthSelected()) {
                 tableView.getColumns().add(tableView.getDepthColumn());
-            if (dataSelectorPane.urlSelected())
-                tableView.getColumns().add(tableView.getUrlColumn()); 
+            }
+            if (dataSelectorPane.urlSelected()) {
+                tableView.getColumns().add(tableView.getUrlColumn());
+            }
         });
-        
-        
+
         Scene scene = new Scene(borderPane);
         primaryStage.setTitle("Earthquake Data");
         primaryStage.setScene(scene);
-        primaryStage.show(); 
-    }
-    
-    public static void selectColumns() {
-        
+        primaryStage.show();
     }
 
-    
     public static void main(String[] args) {
         launch(args);
     }
-   
+
 }

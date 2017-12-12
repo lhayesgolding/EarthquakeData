@@ -83,9 +83,6 @@ public class EarthquakeTableView extends TableView<EarthquakeData> {
         urlColumn.setMinWidth(50);
         urlColumn.setCellValueFactory(
                 new PropertyValueFactory<EarthquakeData, String>("url"));
-
-        //this.getColumns().addAll(locationColumn, magnitudeColumn, quakeTimeColumn, 
-        //        latitudeColumn, longitudeColumn, depthColumn, urlColumn);
         
     }
 

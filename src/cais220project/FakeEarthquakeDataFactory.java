@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author lizhayes-golding
  */
+/**
 public class FakeEarthquakeDataFactory extends EarthquakeDataFactory {
 
     @Override
@@ -37,3 +38,4 @@ public class FakeEarthquakeDataFactory extends EarthquakeDataFactory {
     
     
 }
+* */
