@@ -37,7 +37,7 @@ public class CAIS220Project extends Application {
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(topRow);
-        borderPane.setLeft(btSubmit);
+        borderPane.setCenter(btSubmit);
 
         EarthquakeDataFactory factory = new GeoJSONEarthquakeDataFactory();
 
